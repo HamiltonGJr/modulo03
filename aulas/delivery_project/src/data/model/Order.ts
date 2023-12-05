@@ -3,16 +3,18 @@ export class Order {
   productName: string
   clientName: string
   clientAndress: string
+  createdAt: Date
 
   constructor( 
-    productName: string, 
-    clientName: string, 
-    clientAndress: string
+    productNameParam: string, 
+    clientNameParam: string, 
+    clientAndressParam: string
     ) {
-      this.productName = productName
-      this.clientName = clientName
-      this.clientAndress = clientAndress
+      this.productName = productNameParam
+      this.clientName = clientNameParam
+      this.clientAndress = clientAndressParam
+      this.createdAt = new Date()
   }
 }
 
-console.log(new Order('Caneca', 'Hamilton', 'Rua Pirulito'))
+const order = new Order( 'Caneca', 'Hamilton', 'Rua Tal, 000' )

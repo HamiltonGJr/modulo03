@@ -13,7 +13,7 @@
 - Deve ser capaz de atualizar o status de um pedido, utilizando o ID como identificador.
 
 # TO-DO
-[x] - Configurar um projeto node(iniciar o projeto, criar pastas, criar script, typescript)
+[ ] - Configurar um projeto node(iniciar o projeto, criar pastas, criar script, typescript)
 [ ] - Camadas
 - - - [ ] - Dados
 - - - [ ] - Lógica

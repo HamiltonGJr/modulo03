@@ -8,7 +8,7 @@ createdAt -> Date
 canceledAt -> Date
 
 ## Funcionalidades
-[x] Deve ser capaz de fazer uma transacao, passando: value, description and kind.
+[ ] Deve ser capaz de fazer uma transacao, passando: value, description and kind.
 [ ] Deve ser possivel buscar todas as transacoes.
 [ ] Deve ser possivel buscar apenas as transacoes do tipo "withdraw".
 [ ] Deve ser possivel buscar apenas as transacoes do tipo "deposit".
