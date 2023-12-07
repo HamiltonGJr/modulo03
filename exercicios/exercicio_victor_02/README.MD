@@ -10,9 +10,11 @@ User {
 
 ## Funcionalidades
 
-- Deve ser possível criar um usuário passando: nome, email e password
-- Dever ser possível obter a credencial, passando: email e password
-- Deve ser possível listar os usuários
+[ ] - Deve ser possível criar um usuário passando: nome, email e password
+[ ] - Dever ser possível obter a credencial, passando: email e password
+[ ] - Deve ser possível listar os usuários
+
+## Configuração
 
 [x] - TypeScript
 [x] - Express
