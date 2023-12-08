@@ -1,0 +1,12 @@
+{
+  "name": "sistema_blog_v1.0.0",
+  "version": "1.0.0",
+  "description": "Este é um projeto para testar meu conhecimento, no que foi me passado até o dia 07/12/2023.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsnd --respawn src/server.ts"
+  },
+  "keywords": [],
+  "author": "Hamilton Gonçalves <hamilton27089@gmail.com>",
+  "license": "ISC"
+}
