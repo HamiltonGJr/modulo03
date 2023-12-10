@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose'
 
-const postSchema = new Schema({
+export const postSchema = new Schema({
   title: {
     type: String,
     required: true,
@@ -22,4 +22,4 @@ const postSchema = new Schema({
   }
 })
 
-export const Post = model('post', postSchema)
+// export const Post = model('post', postSchema)
