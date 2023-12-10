@@ -30,8 +30,8 @@ const uri = 'mongodb+srv://Hamil2708:0413262772621340@projeto01.w0uofae.mongodb.
     // console.log(newPost)
 
     // LISTAR USERS E SEUS POSTS:
-    const userPosts = await User.find().populate('post').exec()
-    console.log(userPosts)
+    // const userPosts = await User.find().populate('post').exec()
+    // console.log(userPosts)
   } catch (error) {
     console.log(`ERRO! ${error}`)
   }
