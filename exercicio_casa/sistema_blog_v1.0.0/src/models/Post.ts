@@ -11,7 +11,7 @@ export const postSchema = new Schema({
     required: true,
     minLength: 3
   },
-  linkes: {
+  likes: {
     type: Number,
     default: 0,
     min: 0
