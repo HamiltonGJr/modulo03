@@ -1,6 +1,6 @@
-import { Schema, model } from 'mongoose'
+import { Schema, model } from 'mongoose';
 
-const carSchema = new Schema({
+export const carSchema = new Schema({
   model: {
     type: String,
     required: true
@@ -24,4 +24,4 @@ const carSchema = new Schema({
   }
 })
 
-export const Car = model('car', carSchema)
+// export const Car = model('car', carSchema)
