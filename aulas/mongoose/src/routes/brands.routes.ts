@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import * as Yup from 'yup';
 
-import { Brand } from '../app';
+import { Brand } from '../server';
 
 const router = Router()
 

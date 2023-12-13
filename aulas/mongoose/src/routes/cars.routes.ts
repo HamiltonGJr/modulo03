@@ -1,7 +1,7 @@
 import { Router, request, response } from 'express';
 import * as Yup from 'yup';
 
-import { Car } from '../app';
+import { Car } from '../server';
 
 export const router = Router()
 
@@ -106,6 +106,27 @@ router.put('/:id', async (request, response) => {
     const { errors, message } = error as Yup.ValidationError
 
     response.status(400).send({ validationErrors: errors, message })
+  }
+})
+
+router.get('/brand/:brandId', async (request, response) => {
+  const carParamSchema = Yup.object({
+    id: Yup.string().required()
+  })
+
+  try {
+    const { id } = await carParamSchema.validate(request.params)
+    const car = await Car.findById(id).populate('brand').exec()
+
+    if (!car) {
+      response.status(204).send({ message: `Car with id ${id} was not found!` })
+    }
+
+    response.status(200).send(car)
+  } catch (error) {
+    const { errors, message } = error as Yup.ValidationError
+
+    response.status(400).send({ validationError: errors, message })
   }
 })
 

@@ -13,6 +13,7 @@ export const postSchema = new Schema({
   },
   likes: {
     type: Number,
+    required: true,
     default: 0,
     min: 0
   },
@@ -22,4 +23,4 @@ export const postSchema = new Schema({
   }
 })
 
-// export const Post = model('post', postSchema)
+export const Post = model('post', postSchema)

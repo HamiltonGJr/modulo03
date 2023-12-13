@@ -1,114 +1,21 @@
-import { Router, request, response } from 'express';
-import * as Yup from 'yup';
+import { Router } from 'express';
 
-import { Post } from '../index';
+import { PostController } from '../controllers/Post.Controller'
+import { PostService } from '../services/Post.Service';
 
 const router = Router()
 
-router.get('/', async (request, response) => {
-  try {
-    const post = await Post.find()
+const postService = new PostService()
+const postController = new PostController(postService)
 
-    response.send(post);
-  } catch (error) {
-    const { errors, message } = error as Yup.ValidationError
+router.get('/', postController.listPost.bind(postController))
 
-    response.status(400).send({ validationErrors: errors, message })
-  }
-})
+router.post('/', postController.createPost.bind(postController))
 
-router.post('/', async (request, response) => {
-  const postSchema = Yup.object({
-    title: Yup.string().required(),
-    content: Yup.string().required(),
-    likes: Yup.number()
-  })
+router.get('/:id', postController.listPostById.bind(postController))
 
-  try {
-    const post = await postSchema.validate(request.body)
-    const newPost = await new Post(post).save()
+router.delete('/:id', postController.deletePost.bind(postController))
 
-    response.status(201).send(newPost)
-  } catch (error) {
-    const { errors, message } = error as Yup.ValidationError
-
-    response.status(400).send({ validationErrors: errors, message })
-  }
-})
-
-router.get('/:id', async (request, response) => {
-  const postParamSchema = Yup.object({
-    id: Yup.string().required()
-  })
-
-  try {
-    const { id } = await postParamSchema.validate(request.params)
-    const post = await Post.findById(id).exec()
-
-    if (!post) {
-      response.status(204).send({ messege: `Post with id ${id} was not found!` })
-    }
-
-    response.status(200).send(post)
-  } catch (error) {
-    const { errors, message } = error as Yup.ValidationError
-
-    response.status(400).send({ validationError: errors, message })
-  }
-})
-
-router.delete('/:id', async (request, reponse) => {
-  const postParamSchema = Yup.object({
-    id: Yup.string().required()
-  })
-
-  try {
-    const { id } = await postParamSchema.validate(request.params)
-    const post = await Post.findByIdAndDelete(id)
-
-    if (!post) {
-      response.status(400).send({ messege: `Post with id ${id} was not found!` })
-    }
-
-    response.status(204).send()
-  } catch (error) {
-    const { errors, message } = error as Yup.ValidationError
-
-    response.status(400).send({ validationError: errors, message })
-  }
-})
-
-router.put('/:id', async (request, response) => {
-  const postParamSchema = Yup.object({
-    id: Yup.string().required()
-  })
-
-  const postSchema = Yup.object({
-    title: Yup.string().required(),
-    content: Yup.string().required(),
-    likes: Yup.number()
-  })
-
-  try {
-    const { id } = await postParamSchema.validate(request.params)
-    const post = await postSchema.validate(request.body)
-
-    const postToupdate = await Post.findByIdAndUpdate(id, post).exec()
-    const updatePost = await Post.findById(id).exec()
-
-    if (!postToupdate) {
-      response.status(204).send({ messege: `Post with id ${id} was not found!` })
-    }
-
-    updatePost!.__v += 1;
-    await updatePost!.save()
-
-    response.status(200).send(updatePost)
-  } catch (error) {
-    const { errors, message } = error as Yup.ValidationError
-
-    response.status(400).send({ validationError: errors, message })
-  }
-})
+router.put('/:id', postController.updatePost.bind(postController))
 
 export default router
